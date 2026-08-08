@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Body Studio</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module"
+    src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js">
+  </script>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">BLENDER + PYTHON + WEB 3D</p>
+      <h1>Interactive Body Studio</h1>
+      <p class="hero-subtitle">
+        Body measurement prediction, clothing-size recommendation,
+        and custom character export from Blender.
+      </p>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="viewer-panel card">
+      <div class="panel-header">
+        <div>
+          <p class="section-kicker">3D MODEL</p>
+          <h2>Interactive character viewer</h2>
+        </div>
+
+        <div class="model-switcher">
+          <button id="femaleButton" class="model-button active" type="button">Female</button>
+          <button id="maleButton" class="model-button" type="button">Male</button>
+          <button id="customButton" class="model-button" type="button">My Created Model</button>
+        </div>
+      </div>
+
+      <div class="viewer-wrap">
+        <model-viewer
+          id="bodyViewer"
+          src="models/female_model.glb"
+          alt="Interactive female 3D model"
+          camera-controls
+          auto-rotate
+          rotation-per-second="12deg"
+          touch-action="pan-y"
+          shadow-intensity="1"
+          shadow-softness="0.8"
+          exposure="1"
+          environment-image="neutral"
+          camera-orbit="0deg 82deg 3m"
+          min-camera-orbit="auto auto 1.2m"
+          max-camera-orbit="auto auto 7m">
+        </model-viewer>
+
+        <div id="loadingMessage" class="loading-message">Loading 3D model…</div>
+      </div>
+
+      <div class="viewer-footer">
+        <span>Drag to rotate</span>
+        <span>Scroll to zoom</span>
+        <button id="resetViewButton" class="text-button" type="button">Reset view</button>
+        <button id="reloadCustomButton" class="text-button" type="button">Reload created model</button>
+      </div>
+    </section>
+
+    <aside class="dashboard-panel card">
+      <div class="dashboard-heading">
+        <p class="section-kicker">BODY ENGINE DATA</p>
+        <h2 id="characterTitle">Female reference model</h2>
+        <p id="characterDescription">
+          Default female body with a selected fitted outfit.
+        </p>
+      </div>
+
+      <section class="data-section">
+        <h3>Input parameters</h3>
+        <div class="metric-grid">
+          <div class="metric-card"><span>Height</span><strong id="heightValue">160 cm</strong></div>
+          <div class="metric-card"><span>Weight</span><strong id="weightValue">57 kg</strong></div>
+        </div>
+      </section>
+
+      <section class="data-section">
+        <h3>Predicted measurements</h3>
+        <div class="metric-grid">
+          <div class="metric-card"><span>Chest</span><strong id="chestValue">86 cm</strong></div>
+          <div class="metric-card"><span>Waist</span><strong id="waistValue">67 cm</strong></div>
+          <div class="metric-card"><span>Hips</span><strong id="hipsValue">94 cm</strong></div>
+          <div class="metric-card"><span>Thighs</span><strong id="thighsValue">54 cm</strong></div>
+        </div>
+      </section>
+
+      <section class="data-section">
+        <h3>Wardrobe</h3>
+
+        <div class="wardrobe-row">
+          <div>
+            <span class="small-label">Top</span>
+            <strong id="topName">Sleeveless Shirt</strong>
+          </div>
+          <div class="recommendation-pill">
+            <span>Recommended</span>
+            <strong id="topSize">M</strong>
+          </div>
+        </div>
+        <div class="score-row">
+          <span>Top fit score</span>
+          <strong id="topScore">98%</strong>
+        </div>
+        <div class="score-track">
+          <div id="topScoreBar" class="score-fill" style="width:98%"></div>
+        </div>
+
+        <div class="wardrobe-row">
+          <div>
+            <span class="small-label">Bottom</span>
+            <strong id="bottomName">Female Skirt</strong>
+          </div>
+          <div class="recommendation-pill">
+            <span>Recommended</span>
+            <strong id="bottomSize">M</strong>
+          </div>
+        </div>
+        <div class="score-row">
+          <span>Bottom fit score</span>
+          <strong id="bottomScore">97%</strong>
+        </div>
+        <div class="score-track">
+          <div id="bottomScoreBar" class="score-fill" style="width:97%"></div>
+        </div>
+      </section>
+
+      <section class="data-section">
+        <h3>Skin tone</h3>
+        <div class="skin-row">
+          <span class="skin-swatch fair"></span>
+          <span class="skin-swatch light selected"></span>
+          <span class="skin-swatch tan"></span>
+          <span class="skin-swatch dark"></span>
+          <span class="skin-swatch black"></span>
+        </div>
+        <p id="skinLabel" class="skin-label">Light</p>
+      </section>
+
+      <div class="prototype-note">
+        <strong>Website integration</strong>
+        <p>
+          Export a character from Blender, then click “My Created Model”
+          or “Reload created model” to load the newest GLB and JSON data.
+        </p>
+      </div>
+    </aside>
+  </main>
+
+  <section class="project-section">
+    <article class="card">
+      <p class="section-kicker">PROJECT OVERVIEW</p>
+      <h2>What the Blender application does</h2>
+      <div class="feature-grid">
+        <div>Creates female and male models</div>
+        <div>Predicts measurements from height and weight</div>
+        <div>Adjusts waist, chest, hips, and thighs</div>
+        <div>Provides five skin-tone choices</div>
+        <div>Displays S, M, and L clothing</div>
+        <div>Calculates clothing-size recommendations</div>
+      </div>
+    </article>
+
+    <article class="card">
+      <p class="section-kicker">CUSTOM EXPORT</p>
+      <h2>Blender to browser workflow</h2>
+      <ol class="steps">
+        <li>Personalize a character in Blender.</li>
+        <li>Choose the visible top and bottom.</li>
+        <li>Click Export Current Character.</li>
+        <li>Open this website and load My Created Model.</li>
+      </ol>
+    </article>
+  </section>
+
+  <footer>Interactive Body Studio • Portfolio Project</footer>
+  <script src="script.js"></script>
+</body>
+</html>
