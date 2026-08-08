@@ -1,4 +1,4 @@
-#Interactive Body Studio
+Interactive Body Studio
 
 A Python-powered Blender application for generating and customizing 3D human models through an interactive interface.
 
