@@ -249,7 +249,7 @@ Computer Science student interested in software development, Python, 3D technolo
 
 Connect
 GitHub: https://github.com/angelaalexo
-LinkedIn: [Add your LinkedIn profile]
+LinkedIn: https://www.linkedin.com/in/angela-aleksovska-0949a6348/
 License
 
 This project is intended as a personal/educational project.
