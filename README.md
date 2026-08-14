@@ -6,7 +6,6 @@
 
 Users can adjust **height, weight, body measurements, proportions, skin type, and clothing** while the model automatically updates inside Blender.
 
-![Interactive Body Studio](docs/screenshots/body-studio.png)
 
 ---
 
